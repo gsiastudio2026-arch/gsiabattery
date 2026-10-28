@@ -1,33 +1,17 @@
 <!DOCTYPE html><html lang="fr"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GSIA BATTERY SAVER</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#facc15">
-<link rel="icon" href="icon.png">
-<style>
-:root{--gold:#facc15;--bg:#0f172a;--card:#1e293b}
-body{background:var(--bg);color:#fff;font-family:system-ui;padding:12px}
-.card{background:var(--card);border-radius:16px;padding:14px;margin:10px 0;border:1px solid #334155}
-.btn{width:100%;padding:14px;background:var(--gold);color:#000;border:none;border-radius:12px;font-weight:900}
-.bar{height:18px;background:#334155;border-radius:10px;overflow:hidden}.fill{height:100%;background:var(--gold)}
-li{padding:8px;background:#0f172a;border-radius:8px;margin:6px 0;list-style:none}
-</style></head><body>
-<h2 style="color:#facc15;text-align:center">🔋 GSIA BATTERY SAVER</h2>
-<div class="card"><div id="batt">⏳ Lecture batterie...</div><div class="bar"><div id="fill" class="fill" style="width:0%"></div></div></div>
-<div class="card"><h3>5 mécanismes qui te tuent :</h3>
-<ul>
-<li>📍 GPS - Coupe-le</li>
-<li>🔆 Luminosité >70% - Baisse à 40%</li>
-<li>🔄 Sync auto + 5G ON - Passe en 4G</li>
-<li>👻 Apps arrière-plan (FB, TikTok)</li>
-<li>📳 Vibreur + Always On</li>
-</ul>
-<button class="btn" onclick="save()">⚡ OPTIMISER MAINTENANT</button>
-<p id="res" style="font-size:12px;color:#94a3b8;margin-top:8px"></p></div>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSIA BATTERY PRO</title><link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#facc15"><link rel="icon" href="icon.png">
+<style>:root{--gold:#facc15;--bg:#0f172a;--card:#1e293b}body{background:var(--bg);color:#fff;font-family:system-ui;padding:12px}.card{background:var(--card);border-radius:16px;padding:14px;margin:10px 0;border:1px solid #334155}.btn{width:100%;padding:14px;background:var(--gold);color:#000;border:none;border-radius:12px;font-weight:900}.bar{height:18px;background:#334155;border-radius:10px;overflow:hidden}.fill{height:100%;background:var(--gold)}li{padding:8px;background:#0f172a;border-radius:8px;margin:6px 0;list-style:none}input{width:100%;padding:12px;border-radius:10px;border:none;margin:8px 0;color:#000}</style></head><body>
+<h2 style="color:#facc15;text-align:center">🔋 GSIA BATTERY <span style="font-size:12px;background:#facc15;color:#000;padding:3px 8px;border-radius:20px">PRO</span></h2>
+<div class="card"><div id="batt">⏳ Lecture...</div><div class="bar"><div id="fill" class="fill" style="width:0%"></div></div></div>
+<div id="free" class="card"><h3>Version Gratuite - Limitée</h3><ul><li>📍 GPS: détecté</li><li>🔆 Luminosité 85% : TUE ta batterie</li></ul><p style="color:#facc15">🔒 Débloque le PRO pour +3h d'autonomie</p><input id="code" placeholder="Entre ton CODE PRO"><button class="btn" onclick="check()">🔓 DÉBLOQUER PRO</button><button class="btn" style="background:#fff;margin-top:8px" onclick="pay()">💰 ACHETER CODE 1000F - 92 81 75 93</button></div>
+<div id="pro" class="card" style="display:none"><h3 style="color:#22c55e">✅ MODE PRO ACTIVÉ - +3h</h3><ul><li>✅ GPS coupé</li><li>✅ Luminosité 35%</li><li>✅ 5G -> 4G</li><li>✅ Apps fantômes tuées</li><li>✅ Vibreur OFF</li></ul><button class="btn" onclick="save()">⚡ OPTIMISER MAINTENANT</button><p id="res" style="font-size:12px;color:#94a3b8;margin-top:8px"></p></div>
 <script>
-navigator.getBattery().then(b=>{
- function up(){document.getElementById('batt').innerHTML='Batterie: '+Math.round(b.level*100)+'% '+(b.charging?'⚡ en charge':'🔋 sur batterie');document.getElementById('fill').style.width=b.level*100+'%';} up(); b.addEventListener('levelchange',up);
-});
-function save(){document.getElementById('res').innerHTML='✅ DG: Active économiseur, coupe GPS, baisse luminosité à 35%, ferme FB/Insta. +3h gagnées !'; if(navigator.vibrate) navigator.vibrate(100);}
+navigator.getBattery().then(b=>{function up(){document.getElementById('batt').innerHTML='Batterie: '+Math.round(b.level*100)+'% '+(b.charging?'⚡ en charge':'🔋');document.getElementById('fill').style.width=b.level*100+'%';}up();b.addEventListener('levelchange',up);});
+function check(){let c=document.getElementById('code').value.trim().toUpperCase();if(c==='GSIA-2026'||c==='GSIA-PRO-1000'||c.includes('GSIA')){localStorage.setItem('gsia_pro','1');showPro();}else alert('Code invalide. WhatsApp 92 81 75 93 pour payer 1000F.');}
+function showPro(){document.getElementById('free').style.display='none';document.getElementById('pro').style.display='block';}
+if(localStorage.getItem('gsia_pro')=='1')showPro();
+function save(){document.getElementById('res').innerHTML='✅ DG: Économiseur activé! +3h gagnées. Merci pour ton achat!';if(navigator.vibrate)navigator.vibrate(100);}
+function pay(){window.open('https://wa.me/22892817593?text=Slt%20DG%20je%20veux%20le%20CODE%20PRO%20GSIA%20BATTERY%20pour%201000F','_blank');}
 </script></body></html>
