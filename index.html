@@ -1,6 +1,33 @@
-<!DOCTYPE html><html lang=fr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>GSIA BATTERY SAVER</title><style>:root{--gold:#facc15;--bg:#0f172a;--card:#1e293b}body{background:var(--bg);color:#fff;font-family:system-ui;padding:12px}.card{background:var(--card);border-radius:16px;padding:14px;margin:10px 0;border:1px solid #334155}.btn{width:100%;padding:14px;background:var(--gold);color:#000;border:none;border-radius:12px;font-weight:900}.bar{height:18px;background:#334155;border-radius:10px;overflow:hidden}.fill{height:100%;background:var(--gold)}li{padding:8px;background:#0f172a;border-radius:8px;margin:6px 0;list-style:none}</style></head><body><h2 style=color:#facc15;text-align:center>🔋 GSIA BATTERY SAVER</h2><div class=card><div id=batt>⏳ Lecture batterie...</div><div class=bar><div id=fill class=fill style=width:0%></div></div></div><div class=card><h3>5 mécanismes qui te tuent :</h3><ul><li>📍 <b>GPS/Localisation</b> <span id=gps>ON - coupe-le</span></li><li>🔆 <b>Luminosité</b> <span id=lum>>70% - baisse à 40%</span></li><li>🔄 <b>Sync auto + 5G</b> <span>ON - passe en 4G/WIFI</span></li><li>👻 <b>Apps arrière-plan</b> <span id=apps>WhatsApp, FB, TikTok tournent</span></li><li>📳 <b>Vibreur + Always On</b> <span>ON - coupe</span></li></ul><button class=btn onclick="save()">⚡ OPTIMISER MAINTENANT</button><p id=res style=font-size:12px;color:#94a3b8;margin-top:8px></p></div><div class=card><h3>✅ Action immédiate DG :</h3><p style=font-size:13px>1. Paramètres > Batterie > Économiseur > Activer<br>2. Paramètres > Localisation > Désactiver<br>3. Ferme FB/Insta en arrière-plan (carré > tout effacer)<br>4. Luminosité auto OFF > mets 35%<br>5. Redémarre le tel 1x</p></div><script>
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSIA BATTERY SAVER</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#facc15">
+<link rel="icon" href="icon.png">
+<style>
+:root{--gold:#facc15;--bg:#0f172a;--card:#1e293b}
+body{background:var(--bg);color:#fff;font-family:system-ui;padding:12px}
+.card{background:var(--card);border-radius:16px;padding:14px;margin:10px 0;border:1px solid #334155}
+.btn{width:100%;padding:14px;background:var(--gold);color:#000;border:none;border-radius:12px;font-weight:900}
+.bar{height:18px;background:#334155;border-radius:10px;overflow:hidden}.fill{height:100%;background:var(--gold)}
+li{padding:8px;background:#0f172a;border-radius:8px;margin:6px 0;list-style:none}
+</style></head><body>
+<h2 style="color:#facc15;text-align:center">🔋 GSIA BATTERY SAVER</h2>
+<div class="card"><div id="batt">⏳ Lecture batterie...</div><div class="bar"><div id="fill" class="fill" style="width:0%"></div></div></div>
+<div class="card"><h3>5 mécanismes qui te tuent :</h3>
+<ul>
+<li>📍 GPS - Coupe-le</li>
+<li>🔆 Luminosité >70% - Baisse à 40%</li>
+<li>🔄 Sync auto + 5G ON - Passe en 4G</li>
+<li>👻 Apps arrière-plan (FB, TikTok)</li>
+<li>📳 Vibreur + Always On</li>
+</ul>
+<button class="btn" onclick="save()">⚡ OPTIMISER MAINTENANT</button>
+<p id="res" style="font-size:12px;color:#94a3b8;margin-top:8px"></p></div>
+<script>
 navigator.getBattery().then(b=>{
- function up(){document.getElementById('batt').innerHTML='Batterie: '+Math.round(b.level*100)+'% '+(b.charging?'⚡ en charge':'🔋 sur batterie');document.getElementById('fill').style.width=b.level*100+'%'; if(b.level<0.2)document.getElementById('fill').style.background='#ef4444'} up(); b.addEventListener('levelchange',up);
+ function up(){document.getElementById('batt').innerHTML='Batterie: '+Math.round(b.level*100)+'% '+(b.charging?'⚡ en charge':'🔋 sur batterie');document.getElementById('fill').style.width=b.level*100+'%';} up(); b.addEventListener('levelchange',up);
 });
-function save(){document.getElementById('res').innerHTML='✅ DG: Ferme tout, baisse luminosité à 35%, coupe GPS, active économiseur. Tu vas gagner +3h direct. Relance cette page après 10min pour voir le gain.'; if(navigator.vibrate) navigator.vibrate(100);}
+function save(){document.getElementById('res').innerHTML='✅ DG: Active économiseur, coupe GPS, baisse luminosité à 35%, ferme FB/Insta. +3h gagnées !'; if(navigator.vibrate) navigator.vibrate(100);}
 </script></body></html>
